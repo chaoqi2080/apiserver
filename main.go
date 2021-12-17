@@ -2,6 +2,7 @@ package main
 
 import (
 	"apiserver/config"
+	"apiserver/model"
 	"errors"
 	"github.com/lexkong/log"
 	"github.com/spf13/pflag"
@@ -25,6 +26,10 @@ func main() {
 	if err := config.Init(*cfg); err != nil {
 		panic(err)
 	}
+
+	// init db
+	model.DB.Init()
+	defer model.DB.Close()
 
 	// Set gin mode.
 	gin.SetMode(viper.GetString("runmode"))
@@ -68,5 +73,5 @@ func pingServer() error {
 		log.Info("Waiting for the router, retry in 1 second.")
 		time.Sleep(time.Second)
 	}
-	return errors.New("Cannot connect to the router.")
+	return errors.New("cannot connect to the router")
 }

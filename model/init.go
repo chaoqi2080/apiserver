@@ -11,8 +11,8 @@ import (
 )
 
 type Database struct {
-	Self   *gorm.DB
-	Docker *gorm.DB
+	Self *gorm.DB
+	//Docker *gorm.DB
 }
 
 var DB *Database
@@ -60,26 +60,26 @@ func GetSelfDB() *gorm.DB {
 	return InitSelfDB()
 }
 
-func InitDockerDB() *gorm.DB {
-	return openDB(
-		viper.GetString("docker_db.username"),
-		viper.GetString("docker_db.password"),
-		viper.GetString("docker_db.addr"),
-		viper.GetString("docker_db.name"))
-}
-
-func GetDockerDB() *gorm.DB {
-	return InitDockerDB()
-}
+//func InitDockerDB() *gorm.DB {
+//	return openDB(
+//		viper.GetString("docker_db.username"),
+//		viper.GetString("docker_db.password"),
+//		viper.GetString("docker_db.addr"),
+//		viper.GetString("docker_db.name"))
+//}
+//
+//func GetDockerDB() *gorm.DB {
+//	return InitDockerDB()
+//}
 
 func (db *Database) Init() {
 	DB = &Database{
-		Self:   GetSelfDB(),
-		Docker: GetDockerDB(),
+		Self: GetSelfDB(),
+		//Docker: GetDockerDB(),
 	}
 }
 
 func (db *Database) Close() {
 	DB.Self.Close()
-	DB.Docker.Close()
+	//DB.Docker.Close()
 }

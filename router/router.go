@@ -26,7 +26,11 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	//增加处理函数，用 v1 表示版本号，便于多个版本共存
 	u := g.Group("/v1/user")
 	{
-		u.POST("/:username", user.Create)
+		u.POST("", user.Create)
+		u.DELETE("/:id", user.Delete)
+		u.PUT("/:id", user.Update)
+		u.GET("", user.List)
+		u.GET("/:username", user.Get)
 	}
 
 	// The health check handlers
