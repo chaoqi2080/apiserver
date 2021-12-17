@@ -5,7 +5,9 @@ go 1.17
 require (
 	github.com/fsnotify/fsnotify v1.5.1
 	github.com/gin-gonic/gin v1.7.7
+	github.com/lexkong/log v0.0.0-20180607165131-972f9cd951fc
 	github.com/shirou/gopsutil v3.21.11+incompatible
+	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.10.1
 )
 
@@ -28,7 +30,6 @@ require (
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.9 // indirect
 	github.com/tklauser/numcpus v0.3.0 // indirect
