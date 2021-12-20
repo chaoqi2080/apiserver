@@ -45,7 +45,7 @@ func main() {
 		// Cores.
 		g,
 
-		// Middlwares.
+		// Middlewares.
 		middleware.Logging(),
 		middleware.RequestId(),
 	)

@@ -3,7 +3,6 @@ package middleware
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
 	"regexp"
 	"time"
 
@@ -41,14 +40,14 @@ func Logging() gin.HandlerFunc {
 			return
 		}
 
-		// Read the Body content
-		var bodyBytes []byte
-		if c.Request.Body != nil {
-			bodyBytes, _ = ioutil.ReadAll(c.Request.Body)
-		}
-
-		// Restore the io.ReadCloser to its original state
-		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+		//// Read the Body content
+		//var bodyBytes []byte
+		//if c.Request.Body != nil {
+		//	bodyBytes, _ = ioutil.ReadAll(c.Request.Body)
+		//}
+		//
+		//// Restore the io.ReadCloser to its original state
+		//c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 
 		// The basic information.
 		method := c.Request.Method
