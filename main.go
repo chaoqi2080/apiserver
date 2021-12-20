@@ -3,6 +3,7 @@ package main
 import (
 	"apiserver/config"
 	"apiserver/model"
+	"apiserver/router/middleware"
 	"errors"
 	"github.com/lexkong/log"
 	"github.com/spf13/pflag"
@@ -37,7 +38,7 @@ func main() {
 	// Create the Gin engine.
 	g := gin.New()
 
-	middlewares := []gin.HandlerFunc{}
+	//middlewares := []gin.HandlerFunc{}
 
 	// Routes.
 	router.Load(
@@ -45,7 +46,8 @@ func main() {
 		g,
 
 		// Middlwares.
-		middlewares...,
+		middleware.Logging(),
+		middleware.RequestId(),
 	)
 
 	// Ping the server to make sure the router is working.
