@@ -9,16 +9,18 @@ ARGS=""
 
 function start()
 {
+	# shellcheck disable=SC2006
 	if [ "`pgrep $SERVER -u $UID`" != "" ];then
 		echo "$SERVER already running"
 		exit 1
 	fi
 
-	nohup $BASE_DIR/$SERVER $ARGS  server &>/dev/null &
+	nohup "$BASE_DIR"/$SERVER "$ARGS"  server &>/dev/null &
 
 	echo "sleeping..." &&  sleep $INTERVAL
 
 	# check status
+	# shellcheck disable=SC2006
 	if [ "`pgrep $SERVER -u $UID`" == "" ];then
 		echo "$SERVER start failed"
 		exit 1
@@ -27,6 +29,7 @@ function start()
 
 function status()
 {
+	# shellcheck disable=SC2006
 	if [ "`pgrep $SERVER -u $UID`" != "" ];then
 		echo $SERVER is running
 	else
@@ -36,12 +39,15 @@ function status()
 
 function stop()
 {
+	# shellcheck disable=SC2006
 	if [ "`pgrep $SERVER -u $UID`" != "" ];then
+		# shellcheck disable=SC2046
 		kill -9 `pgrep $SERVER -u $UID`
 	fi
 
 	echo "sleeping..." &&  sleep $INTERVAL
 
+	# shellcheck disable=SC2006
 	if [ "`pgrep $SERVER -u $UID`" != "" ];then
 		echo "$SERVER stop failed"
 		exit 1
