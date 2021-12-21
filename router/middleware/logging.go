@@ -24,7 +24,7 @@ func (w bodyLogWriter) Write(b []byte) (int, error) {
 	return w.ResponseWriter.Write(b)
 }
 
-// Logging is a middleware function that logs the each request.
+// Logging is a middleware function that logs the request.
 func Logging() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now().UTC()
